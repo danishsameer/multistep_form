@@ -3,6 +3,12 @@ import { Form, Button } from 'semantic-ui-react';
 import { throws } from 'assert';
 
 class PersonalDetails extends Component {
+	constructor (props) {
+        super(props)
+          this.state = {
+		  count: 1
+	  }
+        }
 	saveAndContinue = (e) => {
 		e.preventDefault();
 		this.props.nextStep();
@@ -12,10 +18,15 @@ class PersonalDetails extends Component {
 		e.preventDefault();
 		this.props.prevStep();
 	};
-
+        componentdidmount () {
+	      this.setState({count: (this.state.count + 1)})
+        }
 	render() {
 		const { values } = this.props;
 		return (
+			<div className='timer_display'>
+                           <h1>{this.state.count}</h1>
+                         <div>
 			<Form color="blue">
 				<h1 className="ui centered">Enter Personal Details</h1>
 				<Form.Field>
